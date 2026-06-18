@@ -1,6 +1,6 @@
 # MiniBlog API
 
-Una API sencilla para manejar autores y posts, hecha con Node.js, Express y PostgreSQL.
+Una API sencilla para manejar autores, posts y comentarios, hecha con Node.js, Express y PostgreSQL.
 
 ## ¿Qué necesitás para correrla?
 
@@ -57,12 +57,16 @@ Listo, la API corre en http://localhost:3000
 - DELETE /authors/:id      → borra un autor
 
 ### Posts
-- GET    /posts                → trae todos los posts
-- GET    /posts/:id            → trae un post específico
-- GET    /posts/author/:id     → trae los posts de un autor
-- POST   /posts                → crea un post nuevo
-- PUT    /posts/:id            → actualiza un post
-- DELETE /posts/:id            → borra un post
+- GET    /posts                    → trae todos los posts
+- GET    /posts/:id                → trae un post específico
+- GET    /posts/author/:authorId   → trae los posts de un autor
+- POST   /posts                    → crea un post nuevo
+- PUT    /posts/:id                → actualiza un post
+- DELETE /posts/:id                → borra un post
+
+### Comentarios
+- GET    /comments/post/:postId    → trae los comentarios de un post
+- POST   /comments                 → crea un comentario nuevo
 
 ## Variables de entorno
 
