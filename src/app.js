@@ -19,9 +19,9 @@ app.use(express.json())
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 // Rutas principales
-const authorsRoutes = require('./src/routes/authors')
-const postsRoutes = require('./src/routes/posts')
-const commentsRoutes = require('./src/routes/comments')
+const authorsRoutes = require('./routes/authors')
+const postsRoutes = require('./routes/posts')
+const commentsRoutes = require('./routes/comments')
 
 app.use('/authors', authorsRoutes)
 app.use('/posts', postsRoutes)
