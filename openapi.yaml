@@ -1,16 +1,196 @@
-openapi: 3.0.3
+openapi: "3.0.0"
 info:
-  title: Mini Blog API
-  version: 1.0.0
-  description: API del proyecto Mini Blog
+  title: MiniBlog API
+  version: "1.0.0"
+  description: API REST para gestionar autores y posts
 
 servers:
   - url: http://localhost:3000
+    description: Local
+  - url: https://tu-app.railway.app
+    description: Producción
 
 paths:
-  /health:
+  /authors:
     get:
-      summary: Verifica el estado de la API
+      summary: Listar todos los autores
       responses:
-        '200':
-          description: API funcionando correctamente
+        "200":
+          description: Lista de autores
+          content:
+            application/json:
+              example:
+                - id: 1
+                  name: "Ana García"
+                  email: "ana@email.com"
+                  bio: "Escritora"
+                  created_at: "2024-01-01T00:00:00.000Z"
+    post:
+      summary: Crear un autor
+      requestBody:
+        required: true
+        content:
+          application/json:
+            example:
+              name: "Ana García"
+              email: "ana@email.com"
+              bio: "Escritora"
+      responses:
+        "201":
+          description: Autor creado
+        "400":
+          description: Datos inválidos
+
+  /authors/{id}:
+    get:
+      summary: Obtener un autor por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Autor encontrado
+        "404":
+          description: Autor no encontrado
+    put:
+      summary: Actualizar un autor
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            example:
+              name: "Ana García"
+              email: "ana@email.com"
+              bio: "Bio actualizada"
+      responses:
+        "200":
+          description: Autor actualizado
+        "404":
+          description: Autor no encontrado
+    delete:
+      summary: Eliminar un autor
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Autor eliminado
+        "404":
+          description: Autor no encontrado
+
+  /posts:
+    get:
+      summary: Listar todos los posts
+      responses:
+        "200":
+          description: Lista de posts
+          content:
+            application/json:
+              example:
+                - id: 1
+                  author_id: 1
+                  title: "Mi primer post"
+                  content: "Contenido del post"
+                  published: true
+                  created_at: "2024-01-01T00:00:00.000Z"
+    post:
+      summary: Crear un post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            example:
+              author_id: 1
+              title: "Mi primer post"
+              content: "Contenido del post"
+              published: false
+      responses:
+        "201":
+          description: Post creado
+        "400":
+          description: Datos inválidos
+
+  /posts/{id}:
+    get:
+      summary: Obtener un post por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Post encontrado
+        "404":
+          description: Post no encontrado
+    put:
+      summary: Actualizar un post
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            example:
+              title: "Post actualizado"
+              content: "Contenido actualizado"
+              published: true
+      responses:
+        "200":
+          description: Post actualizado
+        "404":
+          description: Post no encontrado
+    delete:
+      summary: Eliminar un post
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Post eliminado
+        "404":
+          description: Post no encontrado
+
+  /posts/author/{authorId}:
+    get:
+      summary: Listar posts de un autor con detalle
+      parameters:
+        - name: authorId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Posts del autor
+          content:
+            application/json:
+              example:
+                - id: 1
+                  title: "Mi primer post"
+                  content: "Contenido"
+                  published: true
+                  author_name: "Ana García"
+                  author_email: "ana@email.com"
+        "404":
+          description: Autor no encontrado

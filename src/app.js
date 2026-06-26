@@ -1,17 +1,21 @@
 require('dotenv').config()
 
 const express = require('express')
+const cors = require('cors')
+
 const swaggerUi = require('swagger-ui-express')
 const YAML = require('yamljs')
 
 const app = express()
 
-app.use(express.json())
-
-// Cargar el archivo OpenAPI
 const swaggerDocument = YAML.load('./openapi.yaml')
 
-// Ruta de documentación Swagger
+
+app.use(cors())
+app.use(express.json())
+
+
+// Swagger
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 // Rutas principales
