@@ -38,6 +38,13 @@ Una API sencilla para manejar autores, posts y comentarios, hecha con Node.js, E
 
 8. Arrancá el servidor:
    npm run dev
+Modo producción:
+
+npm start
+
+La API quedará disponible en:
+
+http://localhost:3000
 
 Listo, la API corre en http://localhost:3000
 

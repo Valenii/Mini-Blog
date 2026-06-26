@@ -1,16 +1,25 @@
-require('dotenv').config()
+vrequire('dotenv').config()
 
 const express = require('express')
+const swaggerUi = require('swagger-ui-express')
+const YAML = require('yamljs')
+
 const app = express()
 
 app.use(express.json())
 
-const authorsRoutes  = require('./routes/authors')
-const postsRoutes    = require('./routes/posts')
+// Cargar el archivo OpenAPI
+const swaggerDocument = YAML.load('./openapi.yaml')
+
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+
+const authorsRoutes = require('./routes/authors')
+const postsRoutes = require('./routes/posts')
 const commentsRoutes = require('./routes/comments')
 
-app.use('/authors',  authorsRoutes)
-app.use('/posts',    postsRoutes)
+app.use('/authors', authorsRoutes)
+app.use('/posts', postsRoutes)
 app.use('/comments', commentsRoutes)
 
 app.get('/health', (req, res) => {
