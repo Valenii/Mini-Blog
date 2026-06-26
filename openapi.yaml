@@ -1,0 +1,16 @@
+openapi: 3.0.3
+info:
+  title: Mini Blog API
+  version: 1.0.0
+  description: API del proyecto Mini Blog
+
+servers:
+  - url: http://localhost:3000
+
+paths:
+  /health:
+    get:
+      summary: Verifica el estado de la API
+      responses:
+        '200':
+          description: API funcionando correctamente
