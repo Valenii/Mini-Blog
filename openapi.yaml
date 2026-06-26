@@ -194,3 +194,35 @@ paths:
                   author_email: "ana@email.com"
         "404":
           description: Autor no encontrado
+          
+  /comments:
+    post:
+      summary: Crear un comentario
+      requestBody:
+        required: true
+        content:
+          application/json:
+            example:
+              post_id: 1
+              author_id: 2
+              content: "Excelente artículo."
+      responses:
+        "201":
+          description: Comentario creado
+        "400":
+          description: Datos inválidos
+
+  /comments/post/{postId}:
+    get:
+      summary: Obtener comentarios de un post
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Lista de comentarios
+        "404":
+          description: Post no encontrado
