@@ -137,3 +137,18 @@ La IA me ayudó a entender la estructura del proyecto y el orden
 en que debía construir cada parte. Cada bloque de código fue
 revisado y copiado por mí, lo que me permitió entender qué hacía
 cada archivo y por qué estaba organizado de esa manera.
+
+## 📋 Descripción
+
+MiniBlog API es una API REST desarrollada con **Node.js**, **Express.js** y **PostgreSQL** para gestionar autores, publicaciones y comentarios.
+
+El proyecto implementa operaciones CRUD para las entidades principales, utiliza consultas SQL parametrizadas, documentación interactiva con **Swagger/OpenAPI**, pruebas automatizadas con **Jest** y **Supertest**, variables de entorno mediante **dotenv** y despliegue en **Railway**.
+
+**Stack tecnológico:** Node.js · Express.js · PostgreSQL · pg · Swagger UI Express · Jest · Supertest · dotenv
+
+### ☁️ Deploy en Railway
+
+- https://mini-blog-production-d801.up.railway.app/health — **Health Check**
+- https://mini-blog-production-d801.up.railway.app/authors — **Listar autores**
+- https://mini-blog-production-d801.up.railway.app/comments/post/1 — **Comentarios del post 1**
+- https://mini-blog-production-d801.up.railway.app/api-docs/ — **Swagger UI**
